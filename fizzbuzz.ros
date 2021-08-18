@@ -1,0 +1,47 @@
+#!/bin/sh
+#|-*-mode:lisp-*-|#
+#|
+execros-Q--$0"$@"
+|#
+(progn ;;init forms
+    (ros:ensure-asdf)
+#+quicklisp
+    (ql:quickload '
+        () :silent t)
+)
+
+(defpackage :ros.script.fizzbuzz.3838264314
+    (:use :cl))
+(in-package :ros.script.fizzbuzz.3838264314)
+
+(defun main 
+    (&rest argv)
+    (declare 
+        (ignorable argv)))
+
+(defun fizzbuzz
+    ()
+    (loop for n from 1 to 30 do
+        (cond 
+            (
+                (and 
+                    (= 
+                        (mod n 5) 0) 
+                    (= 
+                        (mod n 3) 0)) 
+                (format t "fizzbuzz~%"))
+            (
+                (= 
+                    (mod n 3) 0) 
+                (format t "fizz~%"))
+            (
+                (= 
+                    (mod n 5) 0) 
+                (format t "buzz~%"))
+            (t
+                (format t "~d~%" n)
+))))
+
+(fizzbuzz)
+
+;;;vim:setft=lisplisp:
