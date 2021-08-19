@@ -1,0 +1,65 @@
+#!/bin/sh
+#|-*-mode:lisp-*-|#
+#|
+execros-Q--$0"$@"
+|#
+(progn ;;init forms
+    (ros:ensure-asdf)
+#+quicklisp
+    (ql:quickload '
+        () :silent t)
+)
+
+(defpackage :ros.script.flatten.3838369880
+    (:use :cl))
+(in-package :ros.script.flatten.3838369880)
+
+(defun main 
+    (&rest argv)
+    (declare 
+        (ignorable argv)))
+
+(defun flatten  
+    (l) 
+    (cond 
+        (
+            (not 
+                (listp l)) l)
+        (
+            (null L)l)
+        (
+            (not 
+                (listp 
+                    (car l))) 
+            (cons 
+                (car l) 
+                (flatten 
+                    (cdr l))) )
+        (t 
+            (append 
+                (flatten 
+                    (car l)) 
+                (flatten 
+                    (cdr l))))
+))
+
+(defvar         list1 '
+    (
+        (1 2) 3 
+        (
+            (4 5 6) 7)8))
+
+(defvar list2 '
+    (
+        (1 2)3 4 5
+        (
+            (
+                (6)7)8)))
+
+(format t "Flattening ~A gives ~A~%" list1
+    (flatten list1))
+(format t "Flattening ~A gives ~A~%" list2
+    (flatten list2))
+
+
+;;;vim:setft=lisplisp:
